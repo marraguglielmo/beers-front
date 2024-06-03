@@ -1,39 +1,29 @@
 <script>
-import axios from 'axios';
-import {store} from './data/store'
+import Header from './components/partials/Header.vue'
 
   export default {
     data(){
       return{
-        beers: [],
       }
+    },
+    components:{
+      Header
     },
 
     methods:{
-      getApi(){
-        axios.get(store.apiUrl)
-          .then(result =>{
-            console.log(result.data);
-            this.beers = result.data
-          })
-          .catch(error =>{
-            console.log(error.message);
-          })
-      }
+      
     },
 
     mounted(){
-        this.getApi();
     }
   }
 </script>
 
 <template>
   <div>
-    <h2>Lista birre</h2>
-      <ul>
-        <li v-for="beer in beers" :key="beer.id">{{beer.id}} - {{beer.name}}</li>
-      </ul>
+    <Header />
+    
+    <router-view></router-view>
   </div>
 </template>
 
